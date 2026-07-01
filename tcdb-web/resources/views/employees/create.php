@@ -9,7 +9,7 @@
         :root {
             --primary: #6366f1;
             --primary-hover: #4f46e5;
-            --bg-color: #0f172a;
+            --bg-color: #000000;
             --text-color: #f8fafc;
             --card-bg: rgba(30, 41, 59, 0.7);
             --border-color: rgba(255, 255, 255, 0.1);
@@ -19,11 +19,6 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-            background-attachment: fixed;
             color: var(--text-color);
             margin: 0;
             padding: 2rem;
@@ -128,6 +123,20 @@
         .btn-secondary:hover {
             background-color: rgba(255, 255, 255, 0.05);
             color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .glass-panel { padding: 1.5rem; }
+            h1 { font-size: 2rem; }
+        }
+        
+        @media (max-width: 480px) {
+            header { flex-direction: column; gap: 1rem; text-align: center; }
+            h1 { font-size: 1.75rem; }
+            input { font-size: 1rem; padding: 0.65rem; }
+            .btn { font-size: 0.95rem; }
         }
 
     </style>

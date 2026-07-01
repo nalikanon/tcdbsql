@@ -9,7 +9,7 @@
         :root {
             --primary: #6366f1;
             --primary-hover: #4f46e5;
-            --bg-color: #0f172a;
+            --bg-color: #000000;
             --text-color: #f8fafc;
             --card-bg: rgba(30, 41, 59, 0.7);
             --border-color: rgba(255, 255, 255, 0.1);
@@ -18,11 +18,6 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-            background-attachment: fixed;
             color: var(--text-color);
             margin: 0;
             padding: 2rem;
@@ -144,9 +139,40 @@
         .btn-danger:hover {
             background-color: #dc2626;
         }
+        .btn-secondary {
+            background-color: transparent;
+            color: #94a3b8;
+            border: 1px solid var(--border-color);
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
         .action-form {
             margin: 0;
             padding: 0;
+        }
+
+        /* Responsive Design */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .glass-panel { padding: 1.5rem; }
+            h1 { font-size: 2rem; }
+            th, td { padding: 0.75rem 0.5rem; }
+            .btn { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+        }
+        
+        @media (max-width: 480px) {
+            header { flex-direction: column; gap: 1rem; align-items: stretch; text-align: center; }
+            header > div { display: flex; flex-direction: column; gap: 0.5rem; }
+            header > div > a { margin-right: 0 !important; text-align: center; }
+            h1 { font-size: 1.75rem; }
         }
 
     </style>
@@ -155,13 +181,17 @@
     <div class="container">
         <header>
             <h1>Employee Directory</h1>
-            <a href="/employees/create" class="btn btn-primary">Add Employee</a>
+            <div>
+                <a href="/scan" class="btn btn-secondary" style="margin-right: 1rem;">Barcode Scanner</a>
+                <a href="/employees/create" class="btn btn-primary">Add Employee</a>
+            </div>
         </header>
         
         <div class="glass-panel">
             <?php if (count($employees) > 0): ?>
-            <table>
-                <thead>
+            <div class="table-responsive">
+                <table>
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
@@ -191,6 +221,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            </div>
             <?php else: ?>
             <div class="empty-state">
                 <h2>No employees found</h2>

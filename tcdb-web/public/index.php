@@ -24,12 +24,14 @@ spl_autoload_register(function ($class) {
 });
 
 use App\Controllers\EmployeeController;
+use App\Controllers\ScanController;
 
 // Simple Router
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
 $controller = new EmployeeController();
+$scanController = new ScanController();
 
 if ($uri === '/' || $uri === '/employees') {
     if ($method === 'POST') {
@@ -41,6 +43,10 @@ if ($uri === '/' || $uri === '/employees') {
     $controller->create();
 } elseif ($uri === '/employees/delete' && $method === 'POST') {
     $controller->destroy();
+} elseif ($uri === '/scan' && $method === 'GET') {
+    $scanController->index();
+} elseif ($uri === '/scan/check' && $method === 'POST') {
+    $scanController->check();
 } else {
     http_response_code(404);
     echo "<h1>404 Not Found</h1>";

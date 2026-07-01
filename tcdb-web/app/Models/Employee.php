@@ -12,6 +12,14 @@ class Employee {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function find($id) {
+        $db = Database::getInstance()->getConnection();
+        $sql = "SELECT * FROM Employee WHERE Employee = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function create($data) {
         $db = Database::getInstance()->getConnection();
         
